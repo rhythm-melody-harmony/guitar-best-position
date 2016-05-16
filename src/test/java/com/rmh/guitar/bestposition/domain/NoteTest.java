@@ -1,4 +1,4 @@
-package com.rmh.guitar.bestposition.common;
+package com.rmh.guitar.bestposition.domain;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.rmh.guitar.bestposition.common.Note;
+import com.rmh.guitar.bestposition.domain.Note;
 
 public class NoteTest {
 	

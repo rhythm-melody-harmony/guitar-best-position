@@ -1,4 +1,4 @@
-package com.rmh.guitar.bestposition.common;
+package com.rmh.guitar.bestposition.domain;
 
 public enum Note {
 	

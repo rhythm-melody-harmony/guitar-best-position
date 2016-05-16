@@ -2,8 +2,8 @@ package com.rmh.guitar.bestposition.fretboard.settings;
 
 import org.springframework.stereotype.Component;
 
-import com.rmh.guitar.bestposition.common.Note;
-import com.rmh.guitar.bestposition.common.Tone;
+import com.rmh.guitar.bestposition.domain.Note;
+import com.rmh.guitar.bestposition.domain.Tone;
 
 @Component
 public class DefaultFretBoardSettingsFactory {

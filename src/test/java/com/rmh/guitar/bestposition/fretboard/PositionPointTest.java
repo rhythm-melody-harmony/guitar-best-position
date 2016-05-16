@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.rmh.guitar.bestposition.common.Note;
-import com.rmh.guitar.bestposition.common.Tone;
+import com.rmh.guitar.bestposition.domain.Note;
+import com.rmh.guitar.bestposition.domain.Tone;
 
 public class PositionPointTest {
 

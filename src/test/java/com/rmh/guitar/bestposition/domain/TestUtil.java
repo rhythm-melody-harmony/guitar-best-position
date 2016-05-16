@@ -1,6 +1,8 @@
-package com.rmh.guitar.bestposition.common;
+package com.rmh.guitar.bestposition.domain;
 
-import com.rmh.guitar.bestposition.common.Note;
+import com.rmh.guitar.bestposition.domain.Note;
+import com.rmh.guitar.bestposition.domain.Tone;
+import com.rmh.guitar.bestposition.fretboard.settings.FretBoardSettings;
 
 public class TestUtil {
 
@@ -35,6 +37,12 @@ public class TestUtil {
 		};
 		
 		return tuning;
+	}
+	
+	public static FretBoardSettings buildFretBoardSettings() {
+		FretBoardSettings fretBoardSettings = new FretBoardSettings(21, 6, buildDefaultTuning());
+		
+		return fretBoardSettings;
 	}
 
 }

@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import com.rmh.guitar.bestposition.common.Tone;
+import com.rmh.guitar.bestposition.domain.Tone;
 
 public class FretBoardSettingsTest {
 	

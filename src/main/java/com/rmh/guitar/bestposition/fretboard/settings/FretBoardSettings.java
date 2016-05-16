@@ -2,7 +2,7 @@ package com.rmh.guitar.bestposition.fretboard.settings;
 
 import java.util.Arrays;
 
-import com.rmh.guitar.bestposition.common.Tone;
+import com.rmh.guitar.bestposition.domain.Tone;
 
 public class FretBoardSettings {
 	

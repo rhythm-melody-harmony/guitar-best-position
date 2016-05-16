@@ -1,18 +1,28 @@
-package com.rmh.guitar.bestposition.common;
+package com.rmh.guitar.bestposition.domain;
 
 public class Tone {
     
-    private final Note note;
-    private final int octave;
+    private Note note;
+    private int octave;
+    
+    public Tone() {}
     
     public Tone(Note note, int octave) {
         this.note = note;
         this.octave = octave;
     }
-
-    public Note getNote() {
+    
+    public void setNote(Note note) {
+		this.note = note;
+	}
+    
+	public Note getNote() {
         return note;
     }
+	
+	public void setOctave(int octave) {
+		this.octave = octave;
+	}
 
     public int getOctave() {
         return octave;

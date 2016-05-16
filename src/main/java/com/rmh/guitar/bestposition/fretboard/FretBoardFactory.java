@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.rmh.guitar.bestposition.common.Note;
-import com.rmh.guitar.bestposition.common.Tone;
+import com.rmh.guitar.bestposition.domain.Note;
+import com.rmh.guitar.bestposition.domain.Tone;
 import com.rmh.guitar.bestposition.fretboard.settings.FretBoardSettings;
 
 @Component

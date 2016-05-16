@@ -1,6 +1,6 @@
 package com.rmh.guitar.bestposition.fretboard;
 
-import com.rmh.guitar.bestposition.common.Tone;
+import com.rmh.guitar.bestposition.domain.Tone;
 
 public class PositionPoint {
 	
