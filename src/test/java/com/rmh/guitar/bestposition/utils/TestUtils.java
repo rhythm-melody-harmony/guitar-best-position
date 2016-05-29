@@ -1,10 +1,15 @@
-package com.rmh.guitar.bestposition.domain;
+package com.rmh.guitar.bestposition.utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.rmh.guitar.bestposition.domain.Note;
 import com.rmh.guitar.bestposition.domain.Tone;
+import com.rmh.guitar.bestposition.fretboard.Position;
+import com.rmh.guitar.bestposition.fretboard.PositionPoint;
 import com.rmh.guitar.bestposition.fretboard.settings.FretBoardSettings;
 
-public class TestUtil {
+public class TestUtils {
 
 	public static Note[] buildNoteArray() {
         Note[] notes = {
@@ -43,6 +48,21 @@ public class TestUtil {
 		FretBoardSettings fretBoardSettings = new FretBoardSettings(21, 6, buildDefaultTuning());
 		
 		return fretBoardSettings;
+	}
+	
+	public static List<Position> buildTestTonePositions(Tone tone, int fret, int string) {
+		
+		List<Position> tonePositions = new ArrayList<>();
+		
+		PositionPoint positionPoint = new PositionPoint(tone, fret, string);
+		
+		tonePositions.add(new Position(positionPoint, 1));
+		tonePositions.add(new Position(positionPoint, 2));
+		tonePositions.add(new Position(positionPoint, 3));
+		tonePositions.add(new Position(positionPoint, 4));
+		
+		return tonePositions;
+		
 	}
 
 }

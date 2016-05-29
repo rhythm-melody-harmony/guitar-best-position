@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.rmh.guitar.bestposition.domain.TestUtil;
 import com.rmh.guitar.bestposition.fretboard.settings.FretBoardSettings;
+import com.rmh.guitar.bestposition.utils.TestUtils;
 
 public class FretBoardFactoryTest {
 
@@ -15,7 +15,7 @@ public class FretBoardFactoryTest {
 	public void testCreate() {
 		FretBoardFactory fretBoardFactory = new FretBoardFactory();
 
-		FretBoardSettings fretBoardSettings = TestUtil.buildFretBoardSettings();
+		FretBoardSettings fretBoardSettings = TestUtils.buildFretBoardSettings();
 
 		List<PositionPoint> positionPoints = fretBoardFactory.create(fretBoardSettings);
 

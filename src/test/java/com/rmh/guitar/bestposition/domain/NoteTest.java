@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.rmh.guitar.bestposition.domain.Note;
+import com.rmh.guitar.bestposition.utils.TestUtils;
 
 public class NoteTest {
 	
@@ -41,7 +42,7 @@ public class NoteTest {
 	@Test
     public void testValues() {
         logger.info("Test all values");
-        Note[] expResult = TestUtil.buildNoteArray();
+        Note[] expResult = TestUtils.buildNoteArray();
         Note[] result = Note.values();
         assertArrayEquals(expResult, result);
     }
