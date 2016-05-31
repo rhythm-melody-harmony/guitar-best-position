@@ -46,17 +46,18 @@ public class BestPosition {
   		  						  //because we need temporary starting point
 
 		List<DirectedEdge> edges = new ArrayList<>();
-		List<List<Position>> allPositions = new ArrayList<>(phrase.size());;
+		List<Position> allPositions = new ArrayList<>();
 		
 		FretBoardSettings defaultFretBoardSettings = defaultFretBoardSettingsFactory.create();
 		List<PositionPoint> fretBoard = fretBoardFactory.create(defaultFretBoardSettings);
-		
-		List<Position> priorTonePositions = null;		
 		
 		List<Position> tonePositions = phrasePositionsFinder.findTonePositions(fretBoard, phrase.get(0));
 		List<DirectedEdge> toneEdges = startEdgesBuilder.build(tonePositions);
 		edges.addAll(toneEdges);						
 		numberOfVertices += tonePositions.size();
+		
+		List<Position> priorTonePositions = tonePositions;
+		allPositions.addAll(tonePositions);
 		
 		for (int i = 1; i < phrase.size(); i++) {
 			Tone tone = phrase.get(i);
@@ -67,8 +68,7 @@ public class BestPosition {
 			numberOfVertices += tonePositions.size();
 			
 			priorTonePositions = tonePositions;
-			
-			allPositions.add(tonePositions);
+			allPositions.addAll(tonePositions);
 		}
 		
 		toneEdges = endEdgesBuilder.build(numberOfVertices, priorTonePositions);
@@ -81,10 +81,18 @@ public class BestPosition {
 		}
 		
 		Dijkstra dijkstra = new Dijkstra(edgeWeightedDigraph, 0);
-		Iterable<DirectedEdge> bestPath = dijkstra.pathTo(numberOfVertices);
-		
+		Iterable<DirectedEdge> bestPath = dijkstra.pathTo(numberOfVertices - 1);
 		
 		List<Position> bestPositions = new ArrayList<>();
+		
+		for (DirectedEdge edge : bestPath) {
+			int index = edge.to();
+			
+			if (index < allPositions.size()) {
+				Position position = allPositions.get(index);
+				bestPositions.add(position);
+			}
+		}
 		
 		return bestPositions;
 	}
