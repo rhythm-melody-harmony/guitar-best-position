@@ -104,5 +104,23 @@ public class EdgeWeightCalculatorTest {
 		
 		logger.info("Test OK. Actual weight: {}", weight);
 	}
+	
+	@Test
+	public void testCalculateSameStringDiffFretDiffFingerMovePositon() {
+		
+		EdgeWeightCalculator edgeWeightCalculator = new EdgeWeightCalculator();
+		
+		PositionPoint positionPoint = new PositionPoint(new Tone(Note.C, 1), 3, 5);
+		Position fromPosition = new Position(positionPoint, 3);
+		
+		positionPoint = new PositionPoint(new Tone(Note.D, 1), 5, 5);
+		Position toPosition = new Position(positionPoint, 1);
+		
+		double weight = edgeWeightCalculator.calculate(fromPosition, toPosition);
+		
+		assertEquals(Double.valueOf(6.1d), Double.valueOf(weight));
+		
+		logger.info("Test OK. Actual weight: {}", weight);
+	}
 
 }
