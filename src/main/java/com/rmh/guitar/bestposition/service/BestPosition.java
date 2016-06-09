@@ -89,7 +89,7 @@ public class BestPosition {
 			int index = edge.to();
 			
 			if (index < allPositions.size()) {
-				Position position = allPositions.get(index);
+				Position position = allPositions.get(index - 1);
 				bestPositions.add(position);
 			}
 		}

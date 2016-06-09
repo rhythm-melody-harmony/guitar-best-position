@@ -1,9 +1,11 @@
 package com.rmh.guitar.bestposition.fretboard;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rmh.guitar.bestposition.domain.Tone;
 
 public class Position {
 	
+	@JsonIgnore
 	private PositionPoint positionPoint;
 	private int finger;
 	

@@ -14,7 +14,7 @@ public class EdgeWeightCalculator {
 		double fingerWeight = Math.abs(
 									  (toPosition.getFret() - fromPosition.getFret())
 									- (toPosition.getFinger() - fromPosition.getFinger())
-									);
+									) + toPosition.getFinger();
 
 		double weight = fretWeight
 				+ stringWeight
