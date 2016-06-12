@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 	
 	@RequestMapping("/")
-    public String home(@RequestParam(value="name", required=false, defaultValue="Guitarist") String name, Model model) {
-        model.addAttribute("name", name);
+    public String home(@RequestParam(value="name", required=false, defaultValue="The Guitarist") String name, Model model) {
+		model.addAttribute("name", name);
+        
         return "index";
     }
 
