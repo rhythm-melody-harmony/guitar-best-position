@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rhythm-Melody-Harmony - Guitar Best Position</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+    <style>
+		.floating-box {
+    		float: left;
+    		margin: 10px;
+		}
+
+		textarea {
+			height: 30em;
+			width: 10em;
+		}
+	</style>
+    
+    <script>
+    	$(document).ready(function() {
+    		$('#search-result').hide();	
+    	})
+    
+    	function searchButtonClick() {
+    		console.log("clicked");
+    		$('#search-result').hide();
+    		
+    		var request = [];
+
+    		var lines = $('#search-phrase').val().split('\n');
+    		console.log("lines: ", lines);
+    		
+    		for (i in lines) {
+    			var line = lines[i].split('/');
+    			console.log("line: ", line);
+    			
+    			request.push({"note":line[0], "octave":line[1]});
+    		}
+    		
+    		console.log("request: ", request);
+    		
+    		var url = location.origin + '/bestposition/find';
+    		console.log("Service URL: ", url);
+    		
+    		$.ajax({
+    			headers: { 
+    		        'Accept': 'application/json',
+    		        'Content-Type': 'application/json' 
+    		    },
+    	        url: url,
+    	        method: "POST",
+    	        dataType: "json",
+    	        data: JSON.stringify(request),
+    	        error: function(jqXHR, textStatus, errorThrown ) {
+    	        	$('#search-result').text(textStatus);
+    	        	$('#search-result').show();
+    	        }
+    	    }).then(function(data) {
+    	    	console.log("successed", data);
+    	    	
+    	    	$('#search-result').text('');
+    	    	
+    	    	for (i in data) {
+    	    		var positon = data[i];
+    	    		
+    	    		$('#search-result').append(positon.string + '/' + positon.fret + '/' + positon.finger +
+    	    				'  (' + positon.tone.note + '/' + positon.tone.octave + ')\n');
+    	    	}
+    	    	
+    	    	$('#search-result').show();
+    	    	
+    	    });
+    		
+    	}
+    </script>
+</head>
+<body>
+    <h2 th:text="'Bonjour ' + ${name} + '! Welcome to Rhythm-Melody-Harmony - Guitar Best Position'"></h2>
+    <p>Please enter search phrase in form<br/>Note/Octave<br/>Note/Octave<br/>for example:<br/>
+       A/0<br/>B/1<br/>C/2<br/><br/>Result will be displayed in form<br/>String/Fret/Finger  (Note/Octave)<br/>for example:<br/>
+       5/12/1  (A/0)<br/>2/12/1  (B/1)<br/>2/13/2  (C/2)
+    </p>
+    	
+   	<div class="floating-box">
+   		<textarea id="search-phrase"></textarea>
+   	</div>
+   	
+   	<div class="floating-box">
+		<button type="button" onclick="searchButtonClick()">Go...</button>    	
+   	</div>
+   	
+   	<div class="floating-box">
+   		<textarea id="search-result"></textarea>
+   	</div>
+    
+</body>
+</html>
