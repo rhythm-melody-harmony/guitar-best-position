@@ -8,6 +8,7 @@ public class Position {
 	@JsonIgnore
 	private PositionPoint positionPoint;
 	private int finger;
+	private double weight;
 	
 	public Position(PositionPoint positionPoint, int finger) {
 		this.positionPoint = positionPoint;
@@ -45,6 +46,14 @@ public class Position {
 		
 		return -1;
 	}
+	
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
 
 	@Override
 	public int hashCode() {
@@ -52,6 +61,9 @@ public class Position {
 		int result = 1;
 		result = prime * result + finger;
 		result = prime * result + ((positionPoint == null) ? 0 : positionPoint.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(weight);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -71,12 +83,15 @@ public class Position {
 				return false;
 		} else if (!positionPoint.equals(other.positionPoint))
 			return false;
+		if (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Position [positionPoint=" + positionPoint + ", finger=" + finger + "]";
+		return "Position [positionPoint=" + positionPoint + ", finger=" + finger + ", weight=" + weight + "]";
 	}
+
 	
 }

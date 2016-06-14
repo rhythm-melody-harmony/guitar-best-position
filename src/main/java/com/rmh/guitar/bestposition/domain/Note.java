@@ -1,5 +1,9 @@
 package com.rmh.guitar.bestposition.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum Note {
 	
 	A("A"), 
@@ -17,11 +21,12 @@ public enum Note {
         
     private String label;
     
-    Note(String label) {
+    private Note(String label) {
         this.label = label;
     }
     
-    public static Note fromString(String label) {
+    @JsonCreator
+    public static Note fromString(@JsonProperty("note") String label) {
         
         for (Note note : Note.values()) {
             if (note.label.equals(label)) {
@@ -33,6 +38,7 @@ public enum Note {
     }
     
     @Override
+    @JsonValue
     public String toString() {
         return label;
     }

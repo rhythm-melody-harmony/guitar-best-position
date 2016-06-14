@@ -90,6 +90,7 @@ public class BestPosition {
 			
 			if (index < allPositions.size()) {
 				Position position = allPositions.get(index - 1);
+				position.setWeight(edge.weight());
 				bestPositions.add(position);
 			}
 		}
