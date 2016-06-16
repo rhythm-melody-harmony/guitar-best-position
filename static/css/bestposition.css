@@ -1,0 +1,9 @@
+.floating-box {
+    float: left;
+    margin: 10px;
+}
+
+textarea {
+	height: 30em;
+	width: 10em;
+}
