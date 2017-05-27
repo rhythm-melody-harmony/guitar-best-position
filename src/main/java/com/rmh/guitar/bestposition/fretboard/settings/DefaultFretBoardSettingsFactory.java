@@ -1,25 +1,28 @@
 package com.rmh.guitar.bestposition.fretboard.settings;
 
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import com.rmh.guitar.bestposition.domain.Note;
 import com.rmh.guitar.bestposition.domain.Tone;
 
+import java.util.List;
+
 @Component
+@Data
+@Slf4j
+@ConfigurationProperties(prefix = "guitar.setup")
 public class DefaultFretBoardSettingsFactory {
+
+	private Tone[] tuning;
+	private int numberOfFrets;
+	private int numberOfStrings;
 	
 	public FretBoardSettings create() {
-		
-		Tone[] tuning = {
-				new Tone(Note.E, 1),
-				new Tone(Note.B, 0),
-				new Tone(Note.G, 0),
-				new Tone(Note.D, 0),
-				new Tone(Note.A, -1),
-				new Tone(Note.E, -1)
-		};
-        
-        FretBoardSettings fretBoardSettings = new FretBoardSettings(21, 6, tuning);
+
+        FretBoardSettings fretBoardSettings = new FretBoardSettings(numberOfFrets, numberOfStrings, tuning);
 		
 		return fretBoardSettings;
 		

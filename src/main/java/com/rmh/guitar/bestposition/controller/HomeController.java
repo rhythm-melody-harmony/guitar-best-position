@@ -1,4 +1,4 @@
-package com.rmh.guitar.bestposition.service;
+package com.rmh.guitar.bestposition.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

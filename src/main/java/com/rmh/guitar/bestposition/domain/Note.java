@@ -21,7 +21,7 @@ public enum Note {
         
     private String label;
     
-    private Note(String label) {
+    Note(String label) {
         this.label = label;
     }
     

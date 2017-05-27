@@ -1,0 +1,17 @@
+guitar:
+  setup:
+    number-of-frets: 21
+    number-of-strings: 6
+    tuning:
+      - note: E
+        octave: 1
+      - note: B
+        octave: 0
+      - note: G
+        octave: 0
+      - note: D
+        octave: 0
+      - note: A
+        octave: -1
+      - note: E
+        octave: -1

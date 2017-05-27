@@ -4,3 +4,7 @@
 /bin/
 /.settings/
 /.mvn/
+/.idea/
+/guitar-best-position.iml
+/mvnw
+/mvnw.cmd
