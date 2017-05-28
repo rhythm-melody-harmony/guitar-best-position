@@ -1,13 +1,12 @@
 package com.rmh.guitar.bestposition.domain;
 
-import static org.junit.Assert.*;
-
+import com.rmh.guitar.bestposition.utils.TestUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.rmh.guitar.bestposition.domain.Note;
-import com.rmh.guitar.bestposition.utils.TestUtils;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class NoteTest {
 	

@@ -1,11 +1,8 @@
 package com.rmh.guitar.bestposition.domain;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
-import com.rmh.guitar.bestposition.domain.Note;
-import com.rmh.guitar.bestposition.domain.Tone;
+import static org.junit.Assert.assertEquals;
 
 public class ToneTest {
 

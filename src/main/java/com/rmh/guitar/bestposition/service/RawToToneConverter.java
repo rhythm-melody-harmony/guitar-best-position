@@ -17,9 +17,9 @@ public class RawToToneConverter {
 		
 		for (String rawTone : rawPhrase) {
 			
-			String[] splitedTone = rawTone.split("/");
-			Note note = Note.fromString(splitedTone[0]);
-			int octave = Integer.parseInt(splitedTone[1]);
+			String[] splittedTone = rawTone.split("/");
+			Note note = Note.fromString(splittedTone[0]);
+			int octave = Integer.parseInt(splittedTone[1]);
 			
 			Tone tone = new Tone(note, octave);
 			

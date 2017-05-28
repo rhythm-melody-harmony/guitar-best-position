@@ -2,7 +2,11 @@ package com.rmh.guitar.bestposition.fretboard;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rmh.guitar.bestposition.domain.Tone;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@EqualsAndHashCode
+@ToString
 public class Position {
 	
 	@JsonIgnore
@@ -55,43 +59,4 @@ public class Position {
 		this.weight = weight;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + finger;
-		result = prime * result + ((positionPoint == null) ? 0 : positionPoint.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(weight);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Position other = (Position) obj;
-		if (finger != other.finger)
-			return false;
-		if (positionPoint == null) {
-			if (other.positionPoint != null)
-				return false;
-		} else if (!positionPoint.equals(other.positionPoint))
-			return false;
-		if (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Position [positionPoint=" + positionPoint + ", finger=" + finger + ", weight=" + weight + "]";
-	}
-
-	
 }
