@@ -1,7 +1,8 @@
-package com.rmh.guitar.bestposition.fretboard;
+package com.rmh.guitar.bestposition.domain;
 
 import static org.junit.Assert.assertEquals;
 
+import com.rmh.guitar.bestposition.domain.PositionPoint;
 import org.junit.Test;
 
 import com.rmh.guitar.bestposition.domain.Note;

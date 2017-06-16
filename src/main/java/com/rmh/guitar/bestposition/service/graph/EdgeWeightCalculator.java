@@ -3,34 +3,33 @@ package com.rmh.guitar.bestposition.service.graph;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import com.rmh.guitar.bestposition.domain.request.options.WeightOptions;
 import org.springframework.stereotype.Component;
 
-import com.rmh.guitar.bestposition.fretboard.Position;
+import com.rmh.guitar.bestposition.domain.Position;
 
 @Component
 public class EdgeWeightCalculator {
 
-	public double calculate(Position fromPosition, Position toPosition) {
+	public double calculate(Position fromPosition, Position toPosition, WeightOptions weightOptions) {
 		
-		double fretWeight = Math.abs(toPosition.getFret() - fromPosition.getFret());
-		double stringWeight = Math.abs(toPosition.getString() - fromPosition.getString());
+		double fretWeight = Math.abs(toPosition.getFret() - fromPosition.getFret()) * weightOptions.getFretDistance();
+		double stringWeight = Math.abs(toPosition.getString() - fromPosition.getString()) * weightOptions.getStringDistance();
 		double fingerWeight = Math.abs(
 									  (toPosition.getFret() - fromPosition.getFret())
 									- (toPosition.getFinger() - fromPosition.getFinger())
-									) + toPosition.getFinger() * 0.1;
+									) * weightOptions.getFingerDistance() + toPosition.getFinger() * weightOptions.getFingerDistanceFromIndex();
 
 		double weight = fretWeight
 				+ stringWeight
 				+ fingerWeight;
 
-		return round(weight + 0.1, 2);
+		return round(weight + weightOptions.getEveryPick());
 	}
 	
-	private double round(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
-
+	private double round(double value) {
 	    BigDecimal bd = new BigDecimal(value);
-	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    bd = bd.setScale(2, RoundingMode.HALF_UP);
 	    return bd.doubleValue();
 	}
 

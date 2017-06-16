@@ -6,7 +6,7 @@ function searchButtonClick() {
 	console.log("clicked");
 	$('#search-result').hide();
 	
-	var request = [];
+	var request = {phrase: []};
 
 	var lines = $('#search-phrase').val().split('\n');
 	console.log("lines: ", lines);
@@ -15,14 +15,11 @@ function searchButtonClick() {
 		var line = lines[i].split('/');
 		console.log("line: ", line);
 		
-		request.push({"note":line[0], "octave":line[1]});
+		request.phrase.push({"note":line[0], "octave":line[1]});
 	}
 	
-	console.log("request: ", request);
-	
 	var url = location.origin + '/bestposition/find';
-	console.log("Service URL: ", url);
-	
+
 	$.ajax({
 		headers: { 
 	        'Accept': 'application/json',
@@ -37,8 +34,7 @@ function searchButtonClick() {
         	$('#search-result').show();
         }
     }).then(function(data) {
-    	console.log("successed", data);
-    	
+
     	$('#search-result').text('');
     	
     	for (i in data) {

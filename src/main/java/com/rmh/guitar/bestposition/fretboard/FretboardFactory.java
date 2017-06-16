@@ -3,33 +3,33 @@ package com.rmh.guitar.bestposition.fretboard;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rmh.guitar.bestposition.domain.PositionPoint;
 import org.springframework.stereotype.Component;
 
 import com.rmh.guitar.bestposition.domain.Note;
 import com.rmh.guitar.bestposition.domain.Tone;
-import com.rmh.guitar.bestposition.fretboard.settings.FretBoardSettings;
+import com.rmh.guitar.bestposition.domain.request.options.FretboardSettings;
 
 @Component
-public class FretBoardFactory {
-	
-	private int numberOfStrings;
-	private int numberOfFrets;
+public class FretboardFactory {
+
+    private int numberOfFrets;
 	private Tone[] tuning;
 	private List<Note> naturalScale;
 	
-	public List<PositionPoint> create(FretBoardSettings fretBoardSettings) {
-		
-		numberOfStrings = fretBoardSettings.getNumberOfStrings();
-		numberOfFrets = fretBoardSettings.getNumberOfFrets();
-		tuning = fretBoardSettings.getTuning();
+	public List<PositionPoint> create(FretboardSettings fretboardSettings) {
+
+        int numberOfStrings = fretboardSettings.getNumberOfStrings();
+		numberOfFrets = fretboardSettings.getNumberOfFrets();
+		tuning = fretboardSettings.getTuning();
 		naturalScale = buildNaturalScale(); 
 		
 		List<PositionPoint> positionPoints = new ArrayList<>();
 		
 		for (int i = 0; i < numberOfStrings; i++) {
-			List<PositionPoint> stringPositoinPoints = createString(i);
+			List<PositionPoint> stringPositionPoints = createString(i);
 			
-			positionPoints.addAll(stringPositoinPoints);
+			positionPoints.addAll(stringPositionPoints);
         }
 		
 		return positionPoints;
@@ -64,14 +64,12 @@ public class FretBoardFactory {
         }
         
         note = naturalScale.get(noteIndex);
-        
-        Tone tone = new Tone(note, octave);
-        
-        return tone;
+
+        return new Tone(note, octave);
     }
     
     private List<Note> buildNaturalScale() {
-        List<Note> scale = new ArrayList<Note>();
+        List<Note> scale = new ArrayList<>();
         
         scale.add(Note.C);
         scale.add(Note.CSharp);

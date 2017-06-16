@@ -1,4 +1,4 @@
-package com.rmh.guitar.bestposition.fretboard;
+package com.rmh.guitar.bestposition.domain;
 
 import com.rmh.guitar.bestposition.domain.Tone;
 import lombok.AllArgsConstructor;

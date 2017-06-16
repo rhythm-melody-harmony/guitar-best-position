@@ -1,5 +1,5 @@
 guitar:
-  setup:
+  fretboard-settings:
     number-of-frets: 21
     number-of-strings: 6
     tuning:
@@ -17,5 +17,12 @@ guitar:
         octave: -1
 
 search:
-  use-thumb-finger: false
-  use-open-strings: false
+  search-options:
+    use-thumb-finger: false
+    use-open-strings: false
+  weight-options:
+    every-pick: 0.1
+    fret-distance: 1
+    string-distance: 1
+    finger-distance: 1
+    finger-distance-from-index: 0.1

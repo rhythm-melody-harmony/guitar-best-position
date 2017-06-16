@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import com.rmh.guitar.bestposition.algorithm.DirectedEdge;
 import com.rmh.guitar.bestposition.domain.Note;
 import com.rmh.guitar.bestposition.domain.Tone;
-import com.rmh.guitar.bestposition.fretboard.Position;
+import com.rmh.guitar.bestposition.domain.Position;
 import com.rmh.guitar.bestposition.utils.TestUtils;
 
 public class EndEdgesBuilderTest {

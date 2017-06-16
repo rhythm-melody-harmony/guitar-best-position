@@ -1,32 +1,32 @@
 package com.rmh.guitar.bestposition.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.rmh.guitar.bestposition.algorithm.DirectedEdge;
 import com.rmh.guitar.bestposition.algorithm.EdgeWeightedDigraph;
 import com.rmh.guitar.bestposition.algorithm.shortestpath.Dijkstra;
+import com.rmh.guitar.bestposition.domain.Position;
+import com.rmh.guitar.bestposition.domain.PositionPoint;
 import com.rmh.guitar.bestposition.domain.Tone;
-import com.rmh.guitar.bestposition.fretboard.FretBoardFactory;
-import com.rmh.guitar.bestposition.fretboard.Position;
-import com.rmh.guitar.bestposition.fretboard.PositionPoint;
-import com.rmh.guitar.bestposition.fretboard.settings.DefaultFretBoardSettingsFactory;
-import com.rmh.guitar.bestposition.fretboard.settings.FretBoardSettings;
+import com.rmh.guitar.bestposition.domain.request.Options;
+import com.rmh.guitar.bestposition.domain.request.Request;
+import com.rmh.guitar.bestposition.fretboard.FretboardFactory;
 import com.rmh.guitar.bestposition.service.graph.EdgesBuilder;
 import com.rmh.guitar.bestposition.service.graph.EndEdgesBuilder;
 import com.rmh.guitar.bestposition.service.graph.StartEdgesBuilder;
+import com.rmh.guitar.bestposition.settings.OptionsFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class BestPosition {
 	
 	@Autowired
-	private DefaultFretBoardSettingsFactory defaultFretBoardSettingsFactory;
+	private OptionsFactory optionsFactory;
 	
 	@Autowired
-	private FretBoardFactory fretBoardFactory;
+	private FretboardFactory fretboardFactory;
 	
 	@Autowired
 	private PhrasePositionsFinder phrasePositionsFinder;
@@ -40,18 +40,21 @@ public class BestPosition {
 	@Autowired
 	private EdgesBuilder edgesBuilder;
 	
-	public List<Position> find(List<Tone> phrase) {
-		
+	public List<Position> find(Request request) {
+
+		List<Tone> phrase = request.getPhrase();
+
 		int numberOfVertices = 1; //counter - number of positions. Initialized with 1
   		  						  //because we need temporary starting point
 
 		List<DirectedEdge> edges = new ArrayList<>();
 		List<Position> allPositions = new ArrayList<>();
+
+		Options options = optionsFactory.create(request.getOptions());
 		
-		FretBoardSettings defaultFretBoardSettings = defaultFretBoardSettingsFactory.create();
-		List<PositionPoint> fretBoard = fretBoardFactory.create(defaultFretBoardSettings);
-		
-		List<Position> tonePositions = phrasePositionsFinder.findTonePositions(fretBoard, phrase.get(0));
+		List<PositionPoint> fretBoard = fretboardFactory.create(options.getFretboardSettings());
+
+		List<Position> tonePositions = phrasePositionsFinder.findTonePositions(fretBoard, phrase.get(0), options.getSearchOptions());
 		List<DirectedEdge> toneEdges = startEdgesBuilder.build(tonePositions);
 		edges.addAll(toneEdges);						
 		numberOfVertices += tonePositions.size();
@@ -61,8 +64,8 @@ public class BestPosition {
 		
 		for (int i = 1; i < phrase.size(); i++) {
 			Tone tone = phrase.get(i);
-			tonePositions = phrasePositionsFinder.findTonePositions(fretBoard, tone);
-			toneEdges = edgesBuilder.build(numberOfVertices, priorTonePositions, tonePositions);
+			tonePositions = phrasePositionsFinder.findTonePositions(fretBoard, tone, options.getSearchOptions());
+			toneEdges = edgesBuilder.build(numberOfVertices, priorTonePositions, tonePositions, options.getWeightOptions());
 			
 			edges.addAll(toneEdges);						
 			numberOfVertices += tonePositions.size();

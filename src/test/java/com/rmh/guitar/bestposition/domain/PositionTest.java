@@ -1,7 +1,9 @@
-package com.rmh.guitar.bestposition.fretboard;
+package com.rmh.guitar.bestposition.domain;
 
 import static org.junit.Assert.*;
 
+import com.rmh.guitar.bestposition.domain.Position;
+import com.rmh.guitar.bestposition.domain.PositionPoint;
 import org.junit.Test;
 
 import com.rmh.guitar.bestposition.domain.Note;
@@ -16,7 +18,7 @@ public class PositionTest {
 		PositionPoint positionPoint = new PositionPoint(tone, 3, 5);
 		Position position = new Position(positionPoint, 1);
 		
-		assertEquals(positionPoint, position.getPositionPoint());
+		assertEquals(positionPoint, new PositionPoint(position.getTone(), position.getFret(), position.getString()));
 		assertEquals(1, position.getFinger());
 		assertEquals(tone, position.getTone());
 		assertEquals(3, position.getFret());

@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.rmh.guitar.bestposition.domain.Note;
 import com.rmh.guitar.bestposition.domain.Tone;
-import com.rmh.guitar.bestposition.fretboard.Position;
-import com.rmh.guitar.bestposition.fretboard.PositionPoint;
-import com.rmh.guitar.bestposition.fretboard.settings.FretBoardSettings;
+import com.rmh.guitar.bestposition.domain.Position;
+import com.rmh.guitar.bestposition.domain.PositionPoint;
+import com.rmh.guitar.bestposition.domain.request.options.FretboardSettings;
 
 public class TestUtils {
 
@@ -44,10 +44,10 @@ public class TestUtils {
 		return tuning;
 	}
 	
-	public static FretBoardSettings buildFretBoardSettings() {
-		FretBoardSettings fretBoardSettings = new FretBoardSettings(21, 6, buildDefaultTuning());
+	public static FretboardSettings buildFretBoardSettings() {
+		FretboardSettings fretboardSettings = new FretboardSettings(21, 6, buildDefaultTuning());
 		
-		return fretBoardSettings;
+		return fretboardSettings;
 	}
 	
 	public static List<Position> buildTestTonePositions(Tone tone, int fret, int string) {

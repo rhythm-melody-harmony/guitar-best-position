@@ -4,13 +4,11 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import com.rmh.guitar.bestposition.domain.*;
+import com.rmh.guitar.bestposition.domain.request.options.SearchOptions;
 import org.junit.Test;
 
-import com.rmh.guitar.bestposition.domain.Note;
-import com.rmh.guitar.bestposition.domain.Tone;
-import com.rmh.guitar.bestposition.fretboard.FretBoardFactory;
-import com.rmh.guitar.bestposition.fretboard.Position;
-import com.rmh.guitar.bestposition.fretboard.PositionPoint;
+import com.rmh.guitar.bestposition.fretboard.FretboardFactory;
 import com.rmh.guitar.bestposition.utils.TestUtils;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +24,12 @@ public class PhrasePositionsFinderTest {
 
 	@Test
 	public void testFindTonePositions() {
-		FretBoardFactory fretBoardFactory = new FretBoardFactory();
+		FretboardFactory fretboardFactory = new FretboardFactory();
+
+		SearchOptions searchOptions = new SearchOptions(false, false);
 		
-		List<PositionPoint> fretBoard = fretBoardFactory.create(TestUtils.buildFretBoardSettings());
-		List<Position> tonePositions = phrasePositionsFinder.findTonePositions(fretBoard, new Tone(Note.C, 1));
+		List<PositionPoint> fretBoard = fretboardFactory.create(TestUtils.buildFretBoardSettings());
+		List<Position> tonePositions = phrasePositionsFinder.findTonePositions(fretBoard, new Tone(Note.C, 1), searchOptions);
 		
 		assertNotNull(tonePositions);
 	}

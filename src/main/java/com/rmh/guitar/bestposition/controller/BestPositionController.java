@@ -3,6 +3,7 @@ package com.rmh.guitar.bestposition.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import com.rmh.guitar.bestposition.domain.request.Request;
 import com.rmh.guitar.bestposition.service.BestPosition;
 import com.rmh.guitar.bestposition.service.RawToToneConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +14,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rmh.guitar.bestposition.domain.Tone;
-import com.rmh.guitar.bestposition.fretboard.Position;
+import com.rmh.guitar.bestposition.domain.Position;
 
 @RestController
 @RequestMapping(path = "/bestposition")
 public class BestPositionController {
 
-	@Autowired
-	private BestPosition bestPosition;
+	private final BestPosition bestPosition;
+
+	private final RawToToneConverter rawToToneConverter;
 
 	@Autowired
-	private RawToToneConverter rawToToneConverter;
+	public BestPositionController(BestPosition bestPosition, RawToToneConverter rawToToneConverter) {
+		this.bestPosition = bestPosition;
+		this.rawToToneConverter = rawToToneConverter;
+	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/find")
-	public List<Position> find(@RequestBody List<Tone> phrase) {
+	public List<Position> find(@RequestBody Request request) {
 
-		return bestPosition.find(phrase);
+		return bestPosition.find(request);
 
 	}
 
@@ -39,8 +44,11 @@ public class BestPositionController {
 	public List<Position> findFromTxt(@RequestBody String[] rawPhrase) {
 
 		List<Tone> phrase = rawToToneConverter.convert(Arrays.asList(rawPhrase));
+		Request request = Request.builder()
+				.phrase(phrase)
+				.build();
 
-		return bestPosition.find(phrase);
+		return bestPosition.find(request);
 
 	}
 

@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.rmh.guitar.bestposition.algorithm.DirectedEdge;
-import com.rmh.guitar.bestposition.fretboard.Position;
+import com.rmh.guitar.bestposition.domain.Position;
 
 @Component
 public class StartEdgesBuilder {
