@@ -19,7 +19,19 @@ public class SearchOptionsFactory {
     }
 
     public WeightOptions createWeightOptions() {
-        return new WeightOptions(weightOptions.getEveryPick(), weightOptions.getFretDistance(), weightOptions.getStringDistance(), weightOptions.getFingerDistance(), weightOptions.getFingerDistanceFromIndex());
+
+        return WeightOptions.builder()
+                .everyPick(weightOptions.getEveryPick())
+                .fretDistance(weightOptions.getFretDistance())
+                .stringDistance(weightOptions.getStringDistance())
+                .fingerDistance(weightOptions.getFingerDistance())
+                .fingerDistanceFromIndex(weightOptions.getFingerDistanceFromIndex())
+                .consecutiveSameFinger(weightOptions.getConsecutiveSameFinger())
+                .consecutiveChangeFinger(weightOptions.getConsecutiveChangeFinger())
+                .consecutiveChangeString(weightOptions.getConsecutiveChangeString())
+                .moving(weightOptions.getMoving())
+                .consecutiveMoving(weightOptions.getConsecutiveMoving())
+                .build();
     }
 
 }

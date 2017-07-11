@@ -4,29 +4,41 @@
     <title>Rhythm-Melody-Harmony - Guitar Best Position</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"></link>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="js/js.cookie.js"></script>
     <script type="text/javascript" src="js/bestposition.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bestposition.css"></link>
 </head>
 <body>
-    <h2 th:text="'Bonjour! Welcome to Rhythm-Melody-Harmony - Guitar Best Position'"></h2>
-    <p>Please enter search phrase in form<br/>Note/Octave<br/>Note/Octave<br/>for example:<br/>
-       A/0<br/>B/1<br/>C#/2<br/><br/>Result will be displayed in form<br/>String/Fret/Finger  (Note/Octave)<br/>for example:<br/>
-       5/12/1 (A/0)<br/>2/12/1 (B/1)<br/>2/14/3 (C#/2)
-    </p>
-    	
-   	<div class="floating-box">
-   		<textarea id="search-phrase"></textarea>
-   	</div>
-   	
-   	<div class="floating-box">
-		<button type="button" onclick="searchButtonClick()">Go...</button>    	
-   	</div>
-   	
-   	<div class="floating-box">
-   		<textarea id="search-result"></textarea>
-   	</div>
+    <div class="container">
+        <h2 th:text="'Bonjour! Welcome to Rhythm-Melody-Harmony - Guitar Best Position'"></h2>
+        <p>Please enter search phrase in form<br/>Note/Octave<br/>Note/Octave<br/>for example:<br/>
+           A/0<br/>B/1<br/>C#/2<br/><br/>Result will be displayed in form<br/>String/Fret/Finger  (Note/Octave)<br/>for example:<br/>
+           5/12/1 (A/0)<br/>2/12/1 (B/1)<br/>2/14/3 (C#/2)
+        </p>
+
+        <div class="floating-box">
+            <textarea id="search-phrase"></textarea>
+        </div>
+
+        <div class="floating-box">
+            <button type="button" class="btn btn-primary" onclick="searchButtonClick()">Go...</button>
+        </div>
+
+        <div class="floating-box">
+            <textarea id="search-result"></textarea>
+        </div>
+    </div>
     
 </body>
 </html>

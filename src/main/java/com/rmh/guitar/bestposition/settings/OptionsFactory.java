@@ -60,4 +60,8 @@ public class OptionsFactory {
         return new Options(fretboardSettings, searchOptions, weightOptions);
     }
 
+    public Options createDefault() {
+        return create(null);
+    }
+
 }

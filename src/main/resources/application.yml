@@ -26,3 +26,8 @@ search:
     string-distance: 1
     finger-distance: 1
     finger-distance-from-index: 0.1
+    consecutive-same-finger: 1
+    consecutive-change-finger: 1
+    consecutive-change-string: 1
+    moving: 1
+    consecutive-moving: 1

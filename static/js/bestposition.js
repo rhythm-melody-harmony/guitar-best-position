@@ -1,20 +1,28 @@
+
+
 $(document).ready(function() {
-	$('#search-result').hide();	
+	$('#search-result').hide();
+
+	if (!Cookies.get("options")) {
+        loadDefaultOptions();
+	}
 })
 
 function searchButtonClick() {
-	console.log("clicked");
 	$('#search-result').hide();
 	
 	var request = {phrase: []};
 
+	var options = Cookies.getJSON("options");
+	if (options) {
+		request.options = options;
+	}
+
 	var lines = $('#search-phrase').val().split('\n');
-	console.log("lines: ", lines);
-	
+
 	for (i in lines) {
 		var line = lines[i].split('/');
-		console.log("line: ", line);
-		
+
 		request.phrase.push({"note":line[0], "octave":line[1]});
 	}
 	
@@ -48,5 +56,21 @@ function searchButtonClick() {
     	$('#search-result').show();
     	
     });
-	
+
+}
+
+function loadDefaultOptions() {
+
+    $.ajax({
+		headers: {
+            'Accept': 'application/json'
+		},
+		url: "/options/default",
+		method: "GET"
+    }).then(function (data) {
+    	Cookies.set("options", data);
+    	console.log("Options loaded");
+        console.log(Cookies.getJSON("options"));
+    });
+
 }
